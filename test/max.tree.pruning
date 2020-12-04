@@ -1,0 +1,27 @@
+[
+{
+    "activity":"com.ss.android.xxx.NewActivity",
+    "xpath": "//*[@resource-id='com.xxx.go:id/aaa']",
+    "resourceid": "",
+    "contentdesc":"",
+    "text":"",
+    "classname":""
+},
+{
+    "activity":"com.ss.android.xxx.MainActivity",
+    "xpath": "//*[@resource-id='com.xxx.go:id/bbb' and @text='other']",
+    "resourceid": "",
+    "contentdesc":"",
+    "text":"",
+    "classname":""
+},
+{
+    "activity":"com.ss.android.xxx.SplashActivity",
+    "xpath": "//*[@resource-id='com.com.xxx.go:id/ccc' and @text='other']",
+    "resourceid": "",
+    "contentdesc":"",
+    "text":"",
+    "classname":"",
+    "clickable":"false"
+}
+]

@@ -1,0 +1,30 @@
+[
+{
+    "prob": 1,
+    "activity":"com.ss.android.xxx.MainActivity",
+    "times": 100,
+    "actions": [
+        {
+            "xpath":"//*[@resource-id='com.xxx.go:id/aaa']",
+            "action": "CLICK",
+            "throttle": 3000
+        }
+    ]
+},
+{
+    "prob": 1,
+    "activity":"com.ss.android.xxx.SplashActivity",
+    "times": 100,
+    "actions": [
+        {
+            "xpath":"//*[@resource-id='com.xxx.go:id/bbb']",
+            "action": "CLICK",
+            "throttle": 3000
+        }
+    ]
+}
+]
+
+
+
+

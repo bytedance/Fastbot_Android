@@ -1,0 +1,10 @@
+[
+{
+    "activity":"com.ss.android.xxx.MainActivity",
+    "xpath": "//*[@resource-id='com.xxx.go:id/aaa']"
+},
+{
+    "activity":"com.ss.android.xxx.MainActivity",
+    "xpath": "//*[@resource-id='com.xxx.go:id/bbb']"
+}
+]
