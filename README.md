@@ -14,7 +14,7 @@
 
 ## Usage
 ### Environment preparation
-* Make Android version on your device or emulator is Android 5, 6, 7, 8, 9, 10, 11
+* Make sure Android version on your device or emulator is Android 5, 6, 7, 8, 9, 10, 11
 * Push framework.jar and monkeyq.jar into your device, most likely /sdcard
 ```
 adb push framework.jar /sdcard
@@ -45,7 +45,7 @@ com.android.commands.monkey.Monkey -p package_name --agent robot --running-minut
 
 ### Results Explanation
 #### Observed crash and ANR
-* Observed Java crash, ANR and native crash will be written in to /sdcard/crash-dump.log
+* Observed Java crash, ANR and native crash will be written into /sdcard/crash-dump.log
 * Observed ANR will be written into /sdcard/oom-traces.log
 
 
@@ -57,8 +57,8 @@ com.android.commands.monkey.Monkey -p package_name --agent robot --running-minut
 
 #### Acknowledgement
 * We appreciate the insights and code contribution from project APE by Dr. Tianxiao Gu and Prof. Zhendong Su (ETH Zurich) etc.
-* We thank the useful discussions with Prof. Yao Guo on Fastbot 3.0 (PKU).
-* We want to express our gratitude to Prof. Zhenhua Li (THU), Dr. Liangyi Gong (THU) and Prof. Ting Su (East China Normal University) for their helpful opinions on Fastbot 2.0.
+* We thank the useful discussions with Prof. Yao Guo (PKU) on Fastbot.
+* We want to express our gratitude to Prof. Zhenhua Li (THU), Dr. Liangyi Gong (THU) and Prof. Ting Su (East China Normal University) for their helpful opinions on Fastbot.
 * We are also grateful for valuable advices from Prof. Jian Zhang (Chinese Academy of Sciences).
 
 > For more Details,  please refer to the handbook in Chinese version
