@@ -10,7 +10,7 @@
 * Fastbot is a model-based-testing tool. Model is build via graph transition with the consideration of high reward choice selection.
 * Fastbot supports non-standard widgets by computer vision techniques such as YOLOv3, ocr and cv segmentation.
 
-> Fastbot-ios: Under construction
+> Fastbot-iOS: Under construction
 
 ## Usage
 ### Environment preparation
