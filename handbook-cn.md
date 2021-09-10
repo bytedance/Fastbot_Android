@@ -28,10 +28,10 @@
 ## 本地接入
 ### 环境预备
 * 支持 Android 5，6，7，8，9，10，11真机及模拟器
-* 将 `framework.jar fastbot-thirdpart.jar  monkeyq.jar` push 到手机上某个目录中，建议/sdcard
+* 将 `framework.jar fastbot-thirdpart.jar monkeyq.jar` push 到手机上某个目录中，建议/sdcard，push `libs/* ` 到 `/data/local/tmp/`
     ```
     adb push *.jar /sdcard
-    adb push libs/* /sdcard/data/local/tmp/
+    adb push libs/* /data/local/tmp/
     ```
 
 

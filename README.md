@@ -21,10 +21,10 @@
 ## Usage
 ### Environment preparation
 * Make sure Android version on your device or emulator is Android 5, 6, 7, 8, 9, 10, 11
-* Push `framework.jar fastbot-thirdpart.jar monkeyq.jar` into your device, most likely /sdcard
+* Push `framework.jar fastbot-thirdpart.jar monkeyq.jar` into your device, most likely /sdcard, push `libs/* ` to `/data/local/tmp/`
   ```shell
   adb push *.jar /sdcard
-  adb push libs/* /sdcard/data/local/tmp/
+  adb push libs/* /data/local/tmp/
   ```
 
 ### Run Fastbot with shell command
