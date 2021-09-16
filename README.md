@@ -32,8 +32,8 @@
 adb -s device_vendor_id shell CLASSPATH=/sdcard/monkeyq.jar:/sdcard/framework.jar:/sdcard/fastbot-thirdpart.jar exec app_process /system/bin
 com.android.commands.monkey.Monkey -p package_name --agent reuseq --running-minutes duration(min) --throttle delay(ms) -v -v
 `
-* before run the command，we can push the strings in apk to `/sdcard/` to improve model
-  * `aapt2` or `aapt` depends your android sdk, the aapt path is ``` ${ANDROID_HOME}/build-tools/28.0.2/aapt2```
+* before run the command，user can push the strings in apk to `/sdcard/` to improve the model
+  * `aapt2` or `aapt` depends your android sdk, a sample aapt path is ``` ${ANDROID_HOME}/build-tools/28.0.2/aapt2```
 
   ```shell
   aapt2 dump  --values strings  [testApp_path.apk] > max.valid.strings
