@@ -19,7 +19,7 @@
      支持非标准化控件，YOLOv3、ocr、cv分割等UI图像识别能力
 > 2021.09 更新
 5. 模型复用
-    
+
     支持模型复用，模型文件会自动存储在 `/sdcard/fastbot_[包名].fbm`，启动 fastbot 时如果此文件存在则默认加载模型，运行过程中每隔十分钟会覆盖存储一次，用户可根据需求删除或拷贝此文件
 
 
@@ -29,21 +29,21 @@
 ### 环境预备
 * 支持 Android 5，6，7，8，9，10，11真机及模拟器
 * 将 `framework.jar fastbot-thirdpart.jar monkeyq.jar` push 到手机上某个目录中，建议/sdcard，push `libs/* ` 到 `/data/local/tmp/`
-    ```
+    ```shell
     adb push *.jar /sdcard
     adb push libs/* /data/local/tmp/
     ```
 
 
 ### shell运行
-* 添加限定词， `aapt2` 可根据本机环境替换为 `aapt`，如果提示不可用，需要添加到 `PATH` 环境变量中， 具体路径为 ``` ${ANDROID_HOME}/build-tools/28.0.2/aapt2```
+* 添加限定词，可提升模型， `aapt2` 可根据本机环境替换为 `aapt`，如果提示不可用，需要添加到 `PATH` 环境变量中， 示例具体路径为 ``` ${ANDROID_HOME}/build-tools/28.0.2/aapt2```
 
     ```shell
     aapt2 dump  --values strings  [install_package_path.apk] > max.valid.strings
     adb push max.valid.strings /sdcard 
     ```
 * 启动 Fastbot
-    ```  shell
+    ```shell
     adb -s 设备号 shell CLASSPATH=/sdcard/monkeyq.jar:/sdcard/framework.jar:/sdcard/fastbot-thirdpart.jar exec app_process /system/bin com.android.commands.monkey.Monkey -p 包名 --agent reuseq --running-minutes 遍历时长 --throttle 事件频率 -v -v
     ```
 
@@ -59,11 +59,11 @@
 
 ###  结果说明
 1. Crash、ANR 捕获
-* 捕获到Java Crash、ANR、Nativie Crash会以追加方式写入/sdcard/crash-dump.log文件
-* 捕获的Anr 同时也会写入/sdcard/oom-traces.log文件
+    * 捕获到Java Crash、ANR、Nativie Crash会以追加方式写入/sdcard/crash-dump.log文件
+    * 捕获的Anr 同时也会写入 `/sdcard/oom-traces.log` 文件
 2. Activity覆盖率统计
-* 正常跑完Fastbot会在当前shell中打印totalActivity（总activity列表），ExploredActivity（遍历到的activity列表）以及本次遍历的总覆盖率
-* 总覆盖率计算公式： coverage = testedActivity / totalActivities * 100
+    * 正常跑完Fastbot会在当前shell中打印totalActivity（总activity列表），ExploredActivity（遍历到的activity列表）以及本次遍历的总覆盖率
+    * 总覆盖率计算公式： `coverage = testedActivity / totalActivities * 100`
 
 ### 注意事项
   totalActivities：通过framework接口 PackageManager.getPackageInfo 获取，这包含app中所有的Activity，其中也包含了很多废弃、不可见、不可达等Activity
@@ -203,9 +203,9 @@ ADBKeyBoard在输入栏自动输入内容，屏蔽UI输入法
         * 配置xpath：查找匹配的控件，屏蔽点击该控件。
         * 配置xpath+bounds：查找匹配的控件，当控件存在时屏蔽指定的区域。
     
-    * 将max.widget.black文件push到手机端的sdcard目录下
-        ```
-        adb push max.widget.black /sdcard # 目录必须为sdcard
+    * 将max.widget.black文件push到手机端的sdcard目录下，目录必须为sdcard
+        ```shell
+        adb push max.widget.black /sdcard 
         ```
 ![](doc/black.png )
 
@@ -245,8 +245,8 @@ ADBKeyBoard在输入栏自动输入内容，屏蔽UI输入法
         adb push max.config /sdcard 
         ```
     * 目录默认保存为手机端sdcard中，如需改变保存位置，在执行命令末尾添加 `--output-directory` 指定路径， --throttle 参数要 >200 才会截图
-        ```
-        adb -s 设备号 shell CLASSPATH=/sdcard/monkeyq.jar:/sdcard/framework.jar exec app_process /system/bin com.android.commands.monkey.Monkey -p 包名 --agent robot         --running-minutes 遍历时长 --throttle 事件频率 -v -v --output-directory 指定路径
+        ```shell
+        adb -s 设备号 shell CLASSPATH=/sdcard/monkeyq.jar:/sdcard/framework.jar exec app_process /system/bin com.android.commands.monkey.Monkey -p 包名 --agent reuseq --running-minutes 遍历时长 --throttle 事件频率 -v -v --output-directory 指定路径
         ```
         
 ###  Schema Event支持
@@ -274,7 +274,7 @@ app 的权限弹窗处理，
 * `max.grantAllPermission = false` Fastbot启动后不会自动授予各种权限；
 
 * shell中增加 
-    ``` shell
+    ```shell
      -p com.android.packageinstaller 
      -p com.android.permissioncontroller
      -p com.lbe.security.miui  # for (miui android 10)
