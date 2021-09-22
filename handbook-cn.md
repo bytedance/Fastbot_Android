@@ -304,6 +304,7 @@ app 的权限弹窗处理，
   
 ![](doc/oppo1.png )
 
-
-
+6. 报错 `NoClassDefFoundError ` `Lcom/google/gson/GsonBuilder`?
+    
+    答：需按照 Usage 所写，将项目下所有 jar `monkey.jar fastbot-thirdpart.jar framework.jar` push 到 `/sdcard`中，并且注意按照文档中运行命令 classpath 包含 `fastbot-thirdpart.jar`
 
