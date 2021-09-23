@@ -199,9 +199,9 @@ ADBKeyBoard在输入栏自动输入内容，屏蔽UI输入法
     * 在PC端新建 `max.widget.black` 文件（名称固定为：max.widget.black），文件内容配置格式如下：
     * 匹配条件activity：当activity与currentactivity一致时执行如下匹配
     * 屏蔽控件或区域共有三种方式：
-        * 配置bounds：屏蔽某个区域，在该区域内的控件或坐标不会被点击。
+        * 配置bounds：屏蔽某个区域，在该区域内的控件或坐标不会被点击，bounds 为 0.0～1.0 之间的一个百分比值。
         * 配置xpath：查找匹配的控件，屏蔽点击该控件。
-        * 配置xpath+bounds：查找匹配的控件，当控件存在时屏蔽指定的区域。
+        * 配置xpath+bounds：查找匹配的控件，当控件存在时屏蔽指定的区域，bounds 为 0.0～1.0 之间的一个百分比值。。
     
     * 将max.widget.black文件push到手机端的sdcard目录下，目录必须为sdcard
         ```shell
@@ -304,6 +304,7 @@ app 的权限弹窗处理，
   
 ![](doc/oppo1.png )
 
-
-
+6. 报错 `NoClassDefFoundError ` `Lcom/google/gson/GsonBuilder`?
+    
+    答：需按照 Usage 所写，将项目下所有 jar `monkey.jar fastbot-thirdpart.jar framework.jar` push 到 `/sdcard`中，并且注意按照文档中运行命令 classpath 包含 `fastbot-thirdpart.jar`
 
