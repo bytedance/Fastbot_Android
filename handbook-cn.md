@@ -281,6 +281,14 @@ app 的权限弹窗处理，
      -p com.samsung.android.permissioncontroller #  for (samsung android 10)
     ```
 增加其一弹窗相关package，可在权限弹窗时关闭弹窗
+
+### fuzzing数据集
+提供各种格式image和video素材，用于遍历过程中执行选取各种类型的素材
+* 执行shell命令
+    ```shell
+     adb push data/fuzzing/ /sdcard/
+     adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/fuzzing
+     ```
   
 ![](doc/permission.png )
 ## 常见问题

@@ -58,6 +58,12 @@ com.android.commands.monkey.Monkey -p package_name --agent reuseq --running-minu
 --output-directory /sdcard/xxx # folder for output directory
 ```
 
+#### optional fuzzing data
+``` shell
+adb push data/fuzzing/ /sdcard/
+adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/fuzzing
+```
+
 ### Results Explanation
 #### Observed crash and ANR
 * Observed Java crash, ANR and native crash will be written into /sdcard/crash-dump.log
