@@ -4,7 +4,7 @@
 ## 优势：
 1. Android多os兼容：
 
-    同时兼容Android5-11，兼容国内各厂商定制化的Android系统及原生Android系统
+    同时兼容Android5-12，兼容国内各厂商定制化的Android系统及原生Android系统
 2. 事件快速注入：
 
     继承原生Monkey的优势，快速点击，每秒最高可发送12个事件
@@ -21,7 +21,9 @@
 5. 模型复用
 
     支持模型复用，模型文件会自动存储在 `/sdcard/fastbot_[包名].fbm`，启动 fastbot 时如果此文件存在则默认加载模型，运行过程中每隔十分钟会覆盖存储一次，用户可根据需求删除或拷贝此文件
-
+ > 2021.11 更新
+ * 支持 android 12 
+ * 添加部分 fuzz 和 mutation能力
 
 > 相关： [Fastbot-iOS](https://github.com/bytedance/Fastbot_iOS) 
 
@@ -95,8 +97,20 @@ ADBKeyBoard在输入栏自动输入内容，屏蔽UI输入法
             ``` 
             adb push max.strings /sdcard
             ```
-
         ![](doc/strings.png )
+3. 对文本控件输入fuzzing
+   * 在PC端新建 `max.fuzzing.strings`文件（max.fuzzing.strings文件存在即生效。 ）
+   * 文件中输入想要输入的字符串，字符串结束换行
+   * 通过以下命令将文件push到手机端
+        ``` 
+        adb push max.fuzzing.strings /sdcard
+        ```
+   * fuzz概率如下：
+        ``` 
+        1. 50% 概率输入fuzzing.strings中某个string
+        2. 35% 概率输入被测试 App 历史页面中text/desc文本内容（不存在max.fuzzing.strings文件时概率提高到85%）
+        3. 15% 概率不输入
+        ```
 
 ### 自定义事件序列
 手动配置Activity的路径（UI自动化用例）
@@ -282,15 +296,45 @@ app 的权限弹窗处理，
     ```
 增加其一弹窗相关package，可在权限弹窗时关闭弹窗
 
-### fuzzing数据集
+### Fuzzing数据集
 提供各种格式image和video素材，用于遍历过程中执行选取各种类型的素材
 * 执行shell命令
     ```shell
-     adb push data/fuzzing/ /sdcard/
+     adb push data/fuzzing/ /sdcard
      adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/fuzzing
      ```
-  
 ![](doc/permission.png )
+
+### 增加Fuzz和mutation event
+模型推理执行某个action后按fuzzingrate几率生成5-10个fuzz序列，由如下event乱序组合
+* 在PC端新建 `max.config`文件
+* 增加以下参数
+  * `max.fuzzingRate = 0.01D //0.01为Fuzz事件的总概率`
+    ```shell
+    fuzzingRate包含的事件(数字为默认概率):
+    max.doRotateFuzzing = 0.15
+    max.doAppSwitchFuzzing = 0.15
+    max.doTrackballFuzzing = 0.15
+    max.doNavKeyFuzzing = 0.15
+    max.doKeyCodeFuzzing = 0.15
+    max.doSystemKeyFuzzing = 0.15
+    max.doDragFuzzing = 0.5
+    max.doPinchZoomFuzzing = 0.15 
+    max.doClickFuzzing = 0.7
+     ```
+  * `max.startMutation = 0.3D //启动Fastbot立刻设置mutation的几率，默认30%`
+    ```shell
+    fuzzingRate包含的事件(数字为默认概率，此概率为事件总概率):
+    max.doMutationAirplaneFuzzing = 0.001
+    max.doMutationMutationAlwaysFinishActivitysFuzzing = 0.1
+    max.doMutationWifiFuzzing = 0.001
+     ```
+* 飞行模式、wifi开关这两个在Fastbot执行完会重置开启
+* 将 `max.config` 文件push到手机端sdcard中，目录必须为sdcard
+    ```
+    adb push max.config /sdcard 
+    ```
+
 ## 常见问题
 1. 本地测试时，手机的顶部状态栏找不到了，怎么恢复呢？
 
@@ -316,3 +360,11 @@ app 的权限弹窗处理，
     
     答：需按照 Usage 所写，将项目下所有 jar `monkey.jar fastbot-thirdpart.jar framework.jar` push 到 `/sdcard`中，并且注意按照文档中运行命令 classpath 包含 `fastbot-thirdpart.jar`
 
+
+7. 报错 Error: `Could not load library` `dlopen failed! libfastbot_native.so`
+
+    答：需按照 Usage 所写，将项目下所有libs文件push到手机中  `adb push libs/* /data/local/tmp/` 
+
+7. 报错 Error: `Could not load library` `dlopen failed! libfastbot_native.so`
+
+    答：需按照 Usage 所写，将项目下所有libs文件push到手机中  `adb push libs/* /data/local/tmp/` 
