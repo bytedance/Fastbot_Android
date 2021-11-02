@@ -17,10 +17,13 @@
  **update 2021.09**
 * Fastbot supports model reuse: see at `/sdcard/fastbot_[packagename].fbm`. This file is loaded by default if it exists when Fastbot starts. During execution, it is overwritten every 10 minutes. The user can delete or copy this file based on their needs. 
 
+ **update 2021.11**
+ * support android 12 
+ * add some fuzz & mutation features
 
 ## Usage
 ### Environment preparation
-* Make sure Android version on your device or emulator is Android 5, 6, 7, 8, 9, 10, 11
+* Make sure Android version on your device or emulator is Android 5, 6, 7, 8, 9, 10, 11，12
 * Push `framework.jar fastbot-thirdpart.jar monkeyq.jar` into your device, most likely /sdcard, push `libs/* ` to `/data/local/tmp/`
   ```shell
   adb push *.jar /sdcard
