@@ -8,7 +8,7 @@
 ***More detail see at [Fastbot architecture](https://mp.weixin.qq.com/s/QhzqBFZygkIS6C69__smyQ)
 
 ## Features
-* Fastbot is compatible with multiple Android OS systems, including original Android, Android 5-11 and a variation of modified Andriod-based system by domestic manufacturers.
+* Fastbot is compatible with multiple Android OS systems, including original Android, Android 5-12 and a variation of modified Andriod-based system by domestic manufacturers.
 * Inherited from original Monkey, Fastbot allows for fast action insertion as high as 12 actions per second.
 * Expert system is equipped with the ability to customize deeply based on needs from different business lines.
 * Fastbot is a model-based-testing tool. Model is build via graph transition with the consideration of high reward choice selection.
@@ -23,7 +23,7 @@
 
 ## Usage
 ### Environment preparation
-* Make sure Android version on your device or emulator is Android 5, 6, 7, 8, 9, 10, 11，12
+* Make sure Android version on your device or emulator is Android 5, 6, 7, 8, 9, 10, 11, 12
 * Push `framework.jar fastbot-thirdpart.jar monkeyq.jar` into your device, most likely /sdcard, push `libs/* ` to `/data/local/tmp/`
   ```shell
   adb push *.jar /sdcard
