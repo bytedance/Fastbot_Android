@@ -98,12 +98,12 @@ ADBKeyBoard在输入栏自动输入内容，屏蔽UI输入法
             adb push max.strings /sdcard
             ```
         ![](doc/strings.png )
-3. 对文本控件输入fuzzing
-   * 在PC端新建 `max.fuzzing.strings`文件（max.fuzzing.strings文件存在即生效。 ）
+3. 对文本控件输入fuzzing 【new】
+   * 将项目中 test 目录中 `max.fuzzing.strings`文件（max.fuzzing.strings文件存在即生效），参考：https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/big-list-of-naughty-strings.txt
    * 文件中输入想要输入的字符串，字符串结束换行
    * 通过以下命令将文件push到手机端
         ``` 
-        adb push max.fuzzing.strings /sdcard
+        adb push test/max.fuzzing.strings /sdcard
         ```
    * fuzz概率如下：
         ``` 
@@ -296,7 +296,7 @@ app 的权限弹窗处理，
     ```
 增加其一弹窗相关package，可在权限弹窗时关闭弹窗
 
-### Fuzzing数据集
+### Fuzzing数据集 【new】
 提供各种格式image和video素材，用于遍历过程中执行选取各种类型的素材
 * 执行shell命令
     ```shell
@@ -305,7 +305,7 @@ app 的权限弹窗处理，
      ```
 ![](doc/permission.png )
 
-### 增加Fuzz和mutation event
+### 增加Fuzz和mutation event 【new】
 模型推理执行某个action后按fuzzingrate几率生成5-10个fuzz序列，由如下event乱序组合
 * 在PC端新建 `max.config`文件
 * 增加以下参数

@@ -19,7 +19,7 @@
 
  **update 2021.11**
  * support android 12 
- * add some fuzz & mutation features
+ * add some new GUI fuzzing & mutation features (inspired/supported by [Themis](https://github.com/the-themis-benchmarks/home))
 
 ## Usage
 ### Environment preparation
