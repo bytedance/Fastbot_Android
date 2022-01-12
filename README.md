@@ -14,12 +14,17 @@
 * Fastbot is a model-based-testing tool. Model is build via graph transition with the consideration of high reward choice selection.
 * Fastbot supports non-standard widgets by computer vision techniques such as YOLOv3, ocr and cv segmentation.
 
- **update 2021.09**
-* Fastbot supports model reuse: see at `/sdcard/fastbot_[packagename].fbm`. This file is loaded by default if it exists when Fastbot starts. During execution, it is overwritten every 10 minutes. The user can delete or copy this file based on their needs. 
+**update 2022.1**
+* update Fastbot Revised License
+* release AnyTrace, the Fastbot test management assistant: supports one-click Fastbot test start, crash analysis, etc. ([AnyTrace User Manual](https://volcengine.bytedance.net/docs/6431/82895))
 
- **update 2021.11**
- * support android 12 
- * add some new GUI fuzzing & mutation features (inspired/supported by [Themis](https://github.com/the-themis-benchmarks/home))
+**update 2021.11**
+* support android 12
+* add some new GUI fuzzing & mutation features (inspired/supported by [Themis](https://github.com/the-themis-benchmarks/home))
+
+**update 2021.09**
+* Fastbot supports model reuse: see at `/sdcard/fastbot_[packagename].fbm`. This file is loaded by default if it exists when Fastbot starts. During execution, it is overwritten every 10 minutes. The user can delete or copy this file based on their needs.
+ 
 
 ## Usage
 ### Environment preparation
