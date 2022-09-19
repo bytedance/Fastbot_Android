@@ -91,3 +91,40 @@ adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:
 * We are also grateful for valuable advices from Prof. Jian Zhang (Chinese Academy of Sciences).
 
 
+## Publications
+
+If you use our work in your research, please kindly cite us as:
+
+1. Lv, Zhengwei, Chao Peng, Zhao Zhang, Ting Su, Kai Liu, Ping Yang (2022). “Fastbot2: Reusable Automated Model-based GUI Testing for Android Enhanced by Reinforcement Learning”. In proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering (ASE 2022). ACM, To appear. [[pdf]](https://se-research.bytedance.com/pdf/ASE22.pdf)
+
+```bibtex
+@inproceedings{fastbot2,
+  title={Fastbot2: Reusable Automated Model-based GUI Testing for Android Enhanced by Reinforcement Learning},
+  author={Lv, Zhengwei and Peng, Chao and Zhang, Zhao and Su, Ting and Liu, Kai and Yang, Ping},
+  booktitle={Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering (ASE 2022)},
+  year={2022}
+}
+```
+
+2. Peng, Chao, Zhao Zhang, Zhengwei Lv, Ping Yang (2022). “MUBot: Learning to Test Large-Scale Commercial Android Apps like a Human”. In proceedings of the 38th International Conference on Software Maintenance and Evolution (ICSME 2022). IEEE, To appear. [[pdf]](https://se-research.bytedance.com/pdf/ICSME22B.pdf)
+
+```bibtex
+@inproceedings{mubot,
+  title={MUBot: Learning to Test Large-Scale Commercial Android Apps like a Human},
+  author={Peng, Chao and Zhang, Zhao and Lv, Zhengwei and Yang, Ping},
+  booktitle={Proceedings of the 38th International Conference on Software Maintenance and Evolution (ICSME 2022)},
+  year={2022}
+}
+```
+
+3. Cai, Tianqin, Zhao Zhang, and Ping Yang. “Fastbot: A Multi-Agent Model-Based Test Generation System”. In Proceedings of the IEEE/ACM 1st International Conference on Automation of Software Test. 2020. [[pdf]](https://se-research.bytedance.com/pdf/AST20.pdf)
+
+```bibtex
+@inproceedings{fastbot,
+  title={Fastbot: A Multi-Agent Model-Based Test Generation System},
+  author={Cai, Tianqin and Zhang, Zhao and Yang, Ping},
+  booktitle={Proceedings of the IEEE/ACM 1st International Conference on Automation of Software Test},
+  pages={93--96},
+  year={2020}
+}
+```
