@@ -8,11 +8,14 @@
 ***More detail see at [Fastbot architecture](https://mp.weixin.qq.com/s/QhzqBFZygkIS6C69__smyQ)
 
 ## Features
-* Fastbot is compatible with multiple Android OS systems, including original Android, Android 5-12 and a variation of modified Andriod-based system by domestic manufacturers.
+* Fastbot is compatible with multiple Android OS systems, including original Android, Android 5-13 and a variation of modified Andriod-based system by domestic manufacturers.
 * Inherited from original Monkey, Fastbot allows for fast action insertion as high as 12 actions per second.
 * Expert system is equipped with the ability to customize deeply based on needs from different business lines.
 * Fastbot is a model-based-testing tool. Model is build via graph transition with the consideration of high reward choice selection.
 * Fastbot supports non-standard widgets by computer vision techniques such as YOLOv3, ocr and cv segmentation.
+
+**update 2023.3**
+* support android 13
 
 **update 2022.1**
 * update Fastbot Revised License
