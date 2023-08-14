@@ -8,18 +8,19 @@
 ***More detail see at [Fastbot architecture](https://mp.weixin.qq.com/s/QhzqBFZygkIS6C69__smyQ)
 
 ## Features
-* Fastbot is compatible with multiple Android OS systems, including original Android, Android 5-13 and a variation of modified Andriod-based system by domestic manufacturers.
+* Fastbot is compatible with multiple Android OS systems, including original Android, Android 5-14 and a variation of modified Andriod-based system by domestic manufacturers.
 * Inherited from original Monkey, Fastbot allows for fast action insertion as high as 12 actions per second.
 * Expert system is equipped with the ability to customize deeply based on needs from different business lines.
 * Fastbot is a model-based-testing tool. Model is build via graph transition with the consideration of high reward choice selection.
-* Fastbot supports non-standard widgets by computer vision techniques such as YOLOv3, ocr and cv segmentation.
+
+**update 2023.8**
+* Java & Cpp code are fully open sourced, build fastbot on your own.
 
 **update 2023.3**
 * support android 13
 
 **update 2022.1**
 * update Fastbot Revised License
-* release AnyTrace, the Fastbot test management assistant: supports one-click Fastbot test start, crash analysis, etc. ([AnyTrace User Manual](https://www.volcengine.com/docs/6431/82895))
 
 **update 2021.11**
 * support android 12
@@ -27,24 +28,30 @@
 
 **update 2021.09**
 * Fastbot supports model reuse: see at `/sdcard/fastbot_[packagename].fbm`. This file is loaded by default if it exists when Fastbot starts. During execution, it is overwritten every 10 minutes. The user can delete or copy this file based on their needs.
- 
+
 
 ## Usage
 ### Environment preparation
-* Make sure Android version on your device or emulator is Android 5, 6, 7, 8, 9, 10, 11, 12
-* Push `framework.jar fastbot-thirdpart.jar monkeyq.jar` into your device, most likely /sdcard, push `libs/* ` to `/data/local/tmp/`
+* Clone this repo, cd this repo and build monkeyq.jar, and please make sure the ndk and cmake are all well configured in your environment.
   ```shell
-  adb push *.jar /sdcard
+  ./gradlew clean makeJar
+  sh ./build_native.sh
+  ~/Library/Android/sdk/build-tools/28.0.3/dx --dex --output=monkeyq.jar monkey/build/libs/monkey.jar
+  ```
+* Push artifacts into your device.
+  ```shell
+  adb push monkey/build/libs/monkeyq.jar /sdcard/monkeyq.jar
+  adb push fastbot-thirdpart.jar /sdcard/fastbot-thirdpart.jar
   adb push libs/* /data/local/tmp/
+  adb push framework.jar /sdcard/framework.jar
   ```
 
 ### Run Fastbot with shell command
 `
-adb -s device_vendor_id shell CLASSPATH=/sdcard/monkeyq.jar:/sdcard/framework.jar:/sdcard/fastbot-thirdpart.jar exec app_process /system/bin
-com.android.commands.monkey.Monkey -p package_name --agent reuseq --running-minutes duration(min) --throttle delay(ms) -v -v
+adb -s device_vendor_id shell CLASSPATH=/sdcard/monkeyq.jar:/sdcard/framework.jar:/sdcard/fastbot-thirdpart.jar exec app_process /system/bin com.android.commands.monkey.Monkey -p package_name --agent reuseq --running-minutes duration(min) --throttle delay(ms) -v -v
 `
 * before run the command，user can push the strings in apk to `/sdcard/` to improve the model
-  * `aapt2` or `aapt` depends your android sdk, a sample aapt path is ``` ${ANDROID_HOME}/build-tools/28.0.2/aapt2```
+    * `aapt2` or `aapt` depends your android sdk, a sample aapt path is ``` ${ANDROID_HOME}/build-tools/28.0.2/aapt2```
 
   ```shell
   aapt2 dump  --values strings  [testApp_path.apk] > max.valid.strings
@@ -88,9 +95,9 @@ adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:
 
 
 ## Acknowledgement
-* We appreciate the insights and code contribution from project APE by Dr. Tianxiao Gu and Prof. Zhendong Su (ETH Zurich) etc.
+* We appreciate the insights and code contribution by Prof. Ting Su (East China Normal University)、Dr. Tianxiao Gu and Prof. Zhendong Su (ETH Zurich) etc.
 * We thank the useful discussions with Prof. Yao Guo (PKU) on Fastbot.
-* We want to express our gratitude to Prof. Zhenhua Li (THU), Dr. Liangyi Gong (THU) and Prof. Ting Su (East China Normal University) for their helpful opinions on Fastbot.
+* We want to express our gratitude to Prof. Zhenhua Li (THU) and Dr. Liangyi Gong (THU) for their helpful opinions on Fastbot.
 * We are also grateful for valuable advices from Prof. Jian Zhang (Chinese Academy of Sciences).
 
 
@@ -131,3 +138,8 @@ If you use our work in your research, please kindly cite us as:
   year={2020}
 }
 ```
+
+## Contributors
+Zhao Zhang, Jianqiang Guo, Yuhui Su, Tianxiao Gu, Zhengwei Lv, Tianqin Cai, Chao Peng, Bao Cao, Shanshan Shao, Dingchun Wang, Jiarong Fu, Ting Su, Mengqian Xu
+
+Welcome more one to become contributors
