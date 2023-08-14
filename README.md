@@ -30,6 +30,49 @@
 * Fastbot supports model reuse: see at `/sdcard/fastbot_[packagename].fbm`. This file is loaded by default if it exists when Fastbot starts. During execution, it is overwritten every 10 minutes. The user can delete or copy this file based on their needs.
 
 
+## Build
+The specific method of compiling Fastbot's apk file monkey.apk.
+
+The compilation of this project depends on gradle, so please install gradle first. Since there are many versions of gradle, the compatibility between different versions is different, so it is recommended to use sdkman to download and manage different versions of gradle. For specific installation and use of sdkman, please refer to: https://sdkman.io/
+
+In short, to install sdkman, execute the following command in the shell:
+
+```shell
+curl -s "https://get.sdkman.io" | bash
+```
+
+After installing sdkman, please cd to the Fastbot project folder to open the shell, and execute the following command in the shell:
+
+```shell
+sdk install gradle 7.6.2 
+```
+```shell
+gradle wrapper
+```
+
+This project relies on ndk and cmake. After installing gradle, please install the SDK required for Android development and execute the following command to install the specific version of ndk and cmake required by this project. Of course, you can also modify the build.gradle file in the monkey directory to modify the versions of ndk and cmake to the versions in your development environment.
+
+```shell
+sdkmanager "cmake;3.18.1"
+sdkmanager "ndk;25.2.9519653"
+```
+
+After that, enter the following command: 
+```shell
+./gradlew clean makeJar
+~/Library/Android/sdk/build-tools/28.0.3/dx --dex --output=monkeyq.jar monkey/build/libs/monkey.jar
+```
+
+After the compilation process is over, you can see the monkeyq.jar file in the root directory. This file is the final compiled Fastbot java package.
+
+After compiling the so file, run:
+```shell
+sh ./build_native.sh
+```
+
+After the compilation process, you can see the .so file in the libs directory. This file directory is the final compiled Fastbot so package.
+
+
 ## Usage
 ### Environment preparation
 * Clone this repo, cd this repo and build monkeyq.jar, and please make sure the ndk and cmake are all well configured in your environment.
