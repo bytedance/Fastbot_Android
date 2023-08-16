@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Bytedance Inc.
+ * Copyright 2020 Advanced Software Technologies Lab at ETH Zurich, Switzerland
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 
-/**
- * @author Zhao Zhang
- */
 
 public class ImageWriterQueue implements Runnable {
 
