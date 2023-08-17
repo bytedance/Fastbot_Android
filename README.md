@@ -14,7 +14,7 @@
 * Fastbot is a model-based-testing tool. Model is build via graph transition with the consideration of high reward choice selection.
 
 **update 2023.8**
-* Java & Cpp code are fully open sourced, build fastbot on your own.
+* Java & Cpp code are fully open-sourced, feel free to build/extend Fastbot on your own (supported by and collaborated with [Prof. Ting Su](https://mobile-app-analysis.github.io/)'s research group from East China Normal University). Welcome any code or idea contribution!
 
 **update 2023.3**
 * support android 13
