@@ -578,7 +578,7 @@ namespace fastbotx {
             ::nlohmann::json actionEvents = ::nlohmann::json::parse(fileContent);
             for (const ::nlohmann::json &actionEvent: actionEvents) {
                 CustomEventPtr customEvent = std::make_shared<CustomEvent>();
-                customEvent->prob = static_cast<float>(getJsonValue<int>(actionEvent, "prob", 1));
+                customEvent->prob = static_cast<float>(getJsonValue<float>(actionEvent, "prob", 1));
                 customEvent->times = getJsonValue<int>(actionEvent, "times", 1);
                 customEvent->activity = getJsonValue<std::string>(actionEvent, "activity", "");
                 BLOG("loading event %s", customEvent->activity.c_str());
