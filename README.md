@@ -13,6 +13,9 @@
 * Expert system is equipped with the ability to customize deeply based on needs from different business lines.
 * Fastbot is a model-based-testing tool. Model is build via graph transition with the consideration of high reward choice selection.
 
+**update 2023.9**
+* Add Fastbot code analysis file for quick understanding of the source code. You can find it [here](./fastbot_code_analysis.md).
+
 **update 2023.8**
 * Java & Cpp code are fully open-sourced, feel free to build/extend Fastbot on your own (supported by and collaborated with [Prof. Ting Su](https://mobile-app-analysis.github.io/)'s research group from East China Normal University). Welcome any code or idea contribution!
 
@@ -135,6 +138,14 @@ adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:
 * Total activity list will be printed in shell after Fastbot job done, together with explored activity list and rate of coverage in this job run.
 * Equation for total activity coverage:  coverage = exploredActivity / totalActivity * 100%
 * Be aware for totalActivity: The list totalActivity is acquired through framework interface PackageManager.getPackageInfo. Contained activities in the list includes many abandoned, invisible or not-reachable activities.
+
+### Code Analysis and Extension
+#### Basic framework
+Fastbot-Android comprises Java and C++ code. The Java codebase is located in the "monkey" directory, while the C++ codebase resides in the "native" directory. The Java code is implemented on the basis of Monkey. Its primary role is to interact with Android devices and the local server, and pass GUI information to the Native layer. The Native layer then computes the Action with the highest expected reward for the next step and returns it to the client as an Operate object which is formatted as JSON. 
+#### Extension
+
+To extend Fastbot, you can make enhancements to both the Java layer and the C++ layer.
+>For more details, please refer to the [fastbot code analysis](./fastbot_code_analysis.md) file.
 
 
 ## Acknowledgement
