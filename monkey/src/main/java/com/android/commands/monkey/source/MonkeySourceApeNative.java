@@ -87,6 +87,7 @@ import com.android.commands.monkey.events.customize.ShellEvent;
 import com.android.commands.monkey.fastbot.client.ActionType;
 import com.android.commands.monkey.fastbot.client.Operate;
 import com.android.commands.monkey.framework.AndroidDevice;
+import com.android.commands.monkey.framework.APIAdapter;
 import com.android.commands.monkey.events.base.mutation.MutationAirplaneEvent;
 import com.android.commands.monkey.events.base.mutation.MutationAlwaysFinishActivityEvent;
 import com.android.commands.monkey.events.base.mutation.MutationWifiEvent;
@@ -1160,7 +1161,8 @@ public class MonkeySourceApeNative implements MonkeyEventSource {
     private void getTotalActivities() {
         try {
             for (String p : MonkeyUtils.getPackageFilter().getmValidPackages()) {
-                PackageInfo packageInfo = AndroidDevice.packageManager.getPackageInfo(p, PackageManager.GET_ACTIVITIES);
+                PackageInfo packageInfo = APIAdapter.getPackageInfo(AndroidDevice.packageManager,
+                                            p, PackageManager.GET_ACTIVITIES);
                 if (packageInfo != null) {
                     if (packageInfo.packageName.equals("com.android.packageinstaller"))
                         continue;

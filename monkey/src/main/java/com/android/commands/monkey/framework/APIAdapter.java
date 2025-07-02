@@ -31,6 +31,8 @@ import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
 import android.content.pm.ResolveInfo;
+import android.content.pm.UserInfo;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -163,8 +165,45 @@ public class APIAdapter {
         }
     }
 
+    private static int getCurrentUser() {
+        IActivityManager mAm = getActivityManager();
+        Class<?> clazz = mAm.getClass();
+        String name = "getCurrentUser";
+        Method method = findMethod(clazz, name);
+        if (method != null) {
+            Object obj = invoke(method, mAm);
+            if(obj instanceof UserInfo) {
+                return ((UserInfo) obj).id;
+            } else if( obj instanceof Integer){
+                return (int) obj;
+            }
+        }
+        return 0;
+    }
+
+    public static PackageInfo getPackageInfo(PackageManager mPm, String packageName, int flags)
+                                                throws PackageManager.NameNotFoundException {
+        int userId = getCurrentUser();
+        Class<?> clazz = mPm.getClass();
+        String name = "getPackageInfoAsUser";
+        Method method = findMethod(clazz, name, String.class, int.class, int.class);
+        if (method != null) {
+            return (PackageInfo) invoke(method, mPm, packageName, flags, userId);
+        } else {
+            return mPm.getPackageInfo(packageName, flags);
+        }
+    }
+
     public static List<ResolveInfo> queryIntentActivities(PackageManager mPm, Intent intent) {
-        return mPm.queryIntentActivities(intent, 0);
+        int userId = getCurrentUser();
+        Class<?> clazz = mPm.getClass();
+        String name = "queryIntentActivitiesAsUser";
+        Method method = findMethod(clazz, name, Intent.class, int.class, int.class);
+        if (method != null) {
+            return (List<ResolveInfo>) invoke(method, mPm, intent, 0, userId);
+        }else {
+            return mPm.queryIntentActivities(intent, 0);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -241,6 +280,17 @@ public class APIAdapter {
         Method m0 = findMethod(c0, c1, IApplicationThread.class,
                 String.class, Intent.class, String.class, IBinder.class,
                 String.class, int.class, int.class, ProfilerInfo.class, Bundle.class);
+
+        int userId = getCurrentUser();
+        String name = "startActivityAsUser";
+        Method method = findMethod(c0, name, IApplicationThread.class,
+                String.class, Intent.class, String.class, IBinder.class,
+                String.class, int.class, int.class, ProfilerInfo.class, Bundle.class, int.class);
+
+        if (method != null) {
+            Logger.println("invoker startActivityAsUser");
+            return invokek(method, mAm, null, null, paramIntent, null, null, null, 0, 0, null, null, userId);
+        }
 
         if (m0 != null) {
             return invokek(m0, mAm, null, null, paramIntent, null, null, null, 0, 0, null, null);

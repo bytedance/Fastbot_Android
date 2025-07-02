@@ -43,6 +43,7 @@ import com.android.commands.monkey.events.base.MonkeyThrottleEvent;
 import com.android.commands.monkey.events.base.MonkeyTouchEvent;
 import com.android.commands.monkey.events.base.MonkeyTrackballEvent;
 import com.android.commands.monkey.framework.AndroidDevice;
+import com.android.commands.monkey.framework.APIAdapter;
 import com.android.commands.monkey.utils.Logger;
 import com.android.commands.monkey.utils.Utils;
 
@@ -602,7 +603,8 @@ public class MonkeySourceRandom implements MonkeyEventSource {
     private void getTotalAcitivities() {
         try {
             for (String p : MonkeyUtils.getPackageFilter().getmValidPackages()) {
-                PackageInfo packageInfo = AndroidDevice.packageManager.getPackageInfo(p, PackageManager.GET_ACTIVITIES);
+                PackageInfo packageInfo = APIAdapter.getPackageInfo(AndroidDevice.packageManager,
+                                            p, PackageManager.GET_ACTIVITIES);
                 if (packageInfo != null) {
                     if (packageInfo.packageName.equals("com.android.packageinstaller"))
                         continue;

@@ -249,7 +249,7 @@ public class AndroidDevice {
     public static String[] getGrantedPermissions(String packageName) {
         PackageInfo packageInfo = null;
         try {
-            packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            packageInfo = APIAdapter.getPackageInfo(packageManager, packageName, PackageManager.GET_PERMISSIONS);
 
             if (packageInfo == null) {
                 return new String[0];
