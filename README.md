@@ -38,6 +38,28 @@
 ## Build
 The specific method of compiling Fastbot's apk file monkey.apk.
 
+### Build with Docker
+
+Docker can provide the required Java, Gradle, Android SDK, NDK, and CMake
+versions without installing them on the host. From the repository root, build
+the reusable builder image:
+
+```shell
+docker build -t fastbot-android-builder .
+```
+
+Then mount the repository and run the build:
+
+```shell
+docker run --rm -v "${PWD}:/workspace" fastbot-android-builder
+```
+
+The generated `monkeyq.jar` and native libraries under `libs/` are written to
+the mounted repository. Rebuild the image after changing the tool versions in
+the `Dockerfile`.
+
+### Build with a local toolchain
+
 The compilation of this project depends on gradle, so please install gradle first. Since there are many versions of gradle, the compatibility between different versions is different, so it is recommended to use sdkman to download and manage different versions of gradle. For specific installation and use of sdkman, please refer to: https://sdkman.io/
 
 In short, to install sdkman, execute the following command in the shell:
